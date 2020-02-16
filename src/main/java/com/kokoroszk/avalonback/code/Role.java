@@ -10,10 +10,10 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Role {
 
-    ArthurianKnight(0, true),
-    MinionOfMordred(1, false),
-    Merlin(2, true),
-    Mordred(3, false);
+    ArthurianKnight(0, true, false),
+    MinionOfMordred(1, false, false),
+    Merlin(2, true, true),
+    Mordred(3, false, true);
 
     private int code;
 
@@ -25,9 +25,10 @@ public enum Role {
     private static final Map<Integer, Role> codeToEnum = Stream.of(Role.values())
             .collect(Collectors.toMap(Role::getCode, Function.identity()));
 
-    private Role(int code, boolean isGoodSide) {
+    private Role(int code, boolean isGoodSide, boolean isAdditional) {
         this.code = code;
         this.isResistance = isGoodSide;
+        this.isAdditional = isAdditional;
     }
 
     @JsonValue

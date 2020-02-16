@@ -65,8 +65,7 @@ public class GameServiceImpl implements GameService {
         var gameName = oldGame.getGameName();
         var playerNames = oldGame.getPlayers().stream().map(Player::getName).collect(toList());
         var additionalRoles = oldGame.getPlayers().stream()
-                .map(Player::getRole).filter(r -> r != Role.ArthurianKnight && r != Role.MinionOfMordred)
-                .collect(toList());
+                .map(Player::getRole).filter(Role::isAdditional).collect(toList());
 
         var newGame = this.createGame(gameId, gameName, playerNames, additionalRoles);
         return newGame;
