@@ -25,6 +25,9 @@ public class GameServiceImpl implements GameService {
 
     private final GameRepository gameRepository;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Game createNewGame(String gameName, List<String> playerNames, List<Role> additionalRoles) {
         // 他のゲームと重複しないIDで新規ゲームを生成する
@@ -32,6 +35,9 @@ public class GameServiceImpl implements GameService {
         return this.createGame(gameId, gameName, playerNames, additionalRoles);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Collection<Game> getAllGame() {
         return this.gameRepository.getAllGame().stream()
@@ -39,6 +45,9 @@ public class GameServiceImpl implements GameService {
                 .collect(toList());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Game getGame(long gameId, long operationCount) {
         Game game;
@@ -57,7 +66,7 @@ public class GameServiceImpl implements GameService {
     }
 
     /**
-     * ゲームを初期化してリスタートする。
+     * {@inheritDoc}
      */
     @Override
     public Game resetGame(long gameId) {
