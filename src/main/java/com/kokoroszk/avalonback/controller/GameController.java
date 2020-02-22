@@ -21,6 +21,7 @@ import com.kokoroszk.avalonback.code.Vote;
 import com.kokoroszk.avalonback.dto.Game;
 import com.kokoroszk.avalonback.request.game.CreateRequest;
 import com.kokoroszk.avalonback.request.game.MissionRequest;
+import com.kokoroszk.avalonback.request.game.ResetRequest;
 import com.kokoroszk.avalonback.request.game.SelectMembersRequest;
 import com.kokoroszk.avalonback.request.game.VoteRequest;
 import com.kokoroszk.avalonback.response.GameResponse;
@@ -83,6 +84,12 @@ public class GameController {
     @RequestMapping(path = "/mission", method = RequestMethod.POST)
     public ResponseEntity<Object> mission(@RequestBody MissionRequest req) {
         this.gamePlayingService.playMission(req.getGameId(), req.getIsSuccess() == 1);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(path = "/reset", method = RequestMethod.POST)
+    public ResponseEntity<Object> reset(@RequestBody ResetRequest req) {
+        this.gameService.resetGame(req.getGameId());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
