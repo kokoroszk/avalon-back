@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.ObjectUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.dozermapper.core.Mapper;
 import com.kokoroszk.avalonback.code.Role;
 import com.kokoroszk.avalonback.code.Vote;
 import com.kokoroszk.avalonback.dto.Game;
@@ -38,6 +38,8 @@ public class GameController {
     private final GameService gameService;
 
     private final GamePlayingService gamePlayingService;
+
+    private final Mapper dozerMapper;
 
     @RequestMapping(path = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -100,9 +102,7 @@ public class GameController {
      * @return GameResponse
      */
     private GameResponse mapGameToResponse(Game game) {
-        var res = new GameResponse();
-        BeanUtils.copyProperties(game, res);
-        return res;
+        return dozerMapper.map(game, GameResponse.class);
     }
 
 }

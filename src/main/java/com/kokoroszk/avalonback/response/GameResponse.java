@@ -1,7 +1,6 @@
 package com.kokoroszk.avalonback.response;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -52,7 +51,7 @@ public class GameResponse {
     private Integer leaderId;
 
     /** Gameに対する操作回数。更新確認で利用。 */
-    private AtomicLong operationCount;
+    private long operationCount;
 
     /**
      * プレイヤーの情報。
