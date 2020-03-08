@@ -25,31 +25,31 @@ public class GameResponse {
     private Long gameId;
 
     /** リクエストされたプレイヤーのID */
-    Long playerId;
+    private Long playerId;
 
     /** ゲームの名称 */
-    String gameName;
+    private String gameName;
 
     /** 参加中のプレイヤーリスト */
-    List<Player> players;
+    private List<Player> players;
 
     /** 参加人数に応じたミッションのリスト */
-    List<Mission> missions;
+    private List<Mission> missions;
 
     /** 現在のミッションのインデックス */
-    Integer currentMission;
+    private Integer currentMission;
 
     /** 現在の却下回数 */
-    Integer rejectionCount;
+    private Integer rejectionCount;
 
     /** 直前のミッション結果 */
-    List<Boolean> lastMissionResult;
+    private List<Boolean> lastMissionResult;
 
     /** 現在のフェーズ */
-    Phase phase;
+    private Phase phase;
 
     /** 現在のリーダプレイヤーのID */
-    Integer leaderId;
+    private Integer leaderId;
 
     /** Gameに対する操作回数。更新確認で利用。 */
     private AtomicLong operationCount;
@@ -58,21 +58,23 @@ public class GameResponse {
      * プレイヤーの情報。
      */
     @JsonInclude(content = Include.NON_EMPTY)
+    @Setter
+    @Getter
     public static class Player {
 
         /** プレイヤーID */
-        Integer id;
+        private Integer id;
 
         /** プレイヤーの名前 */
-        String name;
+        private String name;
 
         /** ミッション参加者として選択されたか */
-        Boolean isSelected;
+        private Boolean isSelected;
 
         /** 直前の投票内容 */
-        Vote vote;
+        private Vote vote;
 
         /** 役職 */
-        Role role;
+        private Role role;
     }
 }
